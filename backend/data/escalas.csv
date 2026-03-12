@@ -1,0 +1,18 @@
+id,test_id,nombre,descripcion
+1,1,Extroversión,"Tendencia a ser sociable, energético y optimista"
+2,1,Apertura,"Creatividad, curiosidad, apertura a nuevas experiencias."
+3,1,Responsabilidad,"Organización, disciplina, confiabilidad, orientación al logro."
+4,1,Amabilidad,"Cooperación, empatía, confianza en los demás, altruismo."
+5,1,Autonomía,"Capacidad de tomar decisiones por sí mismo, independencia"
+6,1,Trabajo en equipo,"Colaboración, comunicación, disposición a trabajar con otros."
+7,1,Liderazgo,"Influencia, dirección de grupos, toma de decisiones en equipo."
+8,1,Resiliencia,Capacidad de adaptarse y recuperarse ante situaciones adversas
+9,1,Integridad,"Honestidad, ética, coherencia entre valores y acciones."
+10,2,Infraestructura y cableado,Evalúa conocimientos sobre la base física de la red.
+11,2,Modelos de referencia de red,Evalúa comprensión conceptual de cómo funciona la comunicación en red
+12,2,Direccionamiento IP y subredes,Evalúa habilidades fundamentales para diseñar y entender redes.
+13,2,Dispositivos de red,Evalúa conocimiento sobre hardware y su función.
+14,2,Protocolos de red,Evalúa comprensión de los protocolos utilizados en comunicación.
+15,2,Seguridad de redes,Evalúa conocimientos sobre protección de redes.
+16,2,Administración y configuración de redes,Evalúa habilidades prácticas de gestión de redes.
+17,2,Diagnóstico y solución de problemas (Troubleshooting),Evalúa capacidad para identificar y resolver problemas.

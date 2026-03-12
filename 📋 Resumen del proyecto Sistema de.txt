@@ -1,0 +1,157 @@
+📋 Resumen del proyecto: Sistema de Evaluación de Personal
+Arquitectura general
+Backend: Python con Flask, API REST, almacenamiento en archivos CSV.
+
+Frontend: React con Vite, estilos Bootstrap, rutas con React Router, peticiones con Axios.
+
+Proxy: Configurado en vite.config.js para redirigir /api al backend en http://localhost:5000.
+
+✅ Módulos completados
+1. Configuración inicial
+Backend: Flask, CORS, pandas, manejador CSV (utils/manejador_csv.py).
+
+Frontend: Vite + React, Bootstrap, react-router-dom, axios, recharts.
+
+2. Módulo de Candidatos
+Backend: CRUD completo (routes/candidatos.py) con limpieza de NaN.
+
+Frontend:
+
+Listado (CandidatosList.jsx) con opciones de editar/eliminar.
+
+Formulario (CandidatoForm.jsx) para crear/editar.
+
+Servicio (services/candidatos.js).
+
+3. Módulo de Cargos
+Backend: CRUD (routes/cargos.py) con limpieza de NaN.
+
+Frontend: Listado y formulario similares a candidatos.
+
+4. Módulo de Evaluadores
+Backend: CRUD con hash de contraseñas (routes/evaluadores.py).
+
+Frontend: (pendiente de implementar en UI, pero el backend está listo).
+
+5. Módulo de Tests
+Backend: CRUD (routes/tests.py) con limpieza de NaN.
+
+Frontend: Listado (TestsList.jsx) con botón "Ver preguntas" y formulario (TestForm.jsx).
+
+6. Módulo de Preguntas
+Backend: CRUD con validación de orden único por test (routes/preguntas.py), limpieza de NaN, soporte para opciones JSON.
+
+Frontend:
+
+Listado (PreguntasList.jsx) con selector de tests y enlace a creación.
+
+Formulario (PreguntaForm.jsx) con campos dinámicos para opciones múltiples, validación de orden único, preselección de test desde URL.
+
+Servicio (services/preguntas.js).
+
+7. Módulo de Aplicación de Tests
+Frontend:
+
+Página de selección (AplicarTest.jsx) para elegir candidato y test.
+
+Página de respuesta (ResponderTest.jsx) que muestra preguntas según tipo (Likert, múltiple, abierta) y envía respuestas.
+
+Backend: Endpoint POST /api/respuestas para guardar respuestas (routes/respuestas.py).
+
+8. Módulo de Resultados
+Backend: Endpoint GET /api/resultados/<candidato_id>/<test_id> que calcula puntuación de la última respuesta (routes/resultados.py).
+
+Frontend: Página (ResultadosTest.jsx) que muestra puntuación, porcentaje, detalle de respuestas y gráfico de barras con recharts.
+
+🧪 Problemas resueltos
+NaN en respuestas JSON: Se implementó limpiar_nan() en todos los endpoints para convertir NaN a null.
+
+Validación de orden único: En preguntas, se evita duplicados por test.
+
+Preselección de test: Al crear pregunta desde la lista de un test, el campo test_id se autoselecciona.
+
+Ancho de tabla: Se usó tableLayout: fixed y estilos para que el texto largo se ajuste.
+
+🚀 Próximos pasos (para continuar)
+Mejorar resultados:
+
+Mostrar histórico de intentos del candidato.
+
+Añadir percentiles y comparación con baremos (desde baremos.csv).
+
+Interpretación automática según puntuación.
+
+Autenticación de evaluadores:
+
+Implementar login en frontend (página de login, proteger rutas).
+
+Usar JWT o sesiones (backend ya tiene hash).
+
+Exportar informes:
+
+Generar PDF con resultados del candidato (usar WeasyPrint o similar).
+
+Botón de descarga en la página de resultados.
+
+Estadísticas globales:
+
+Dashboard con gráficos de resultados por test, candidatos, etc.
+
+Mejoras UX/UI:
+
+Validaciones en tiempo real en formularios.
+
+Mensajes de error más amigables.
+
+Confirmaciones con modales (en lugar de window.confirm).
+
+📁 Estructura actual del proyecto
+text
+evaluacion-personal/
+├── backend/
+│   ├── app.py
+│   ├── requirements.txt
+│   ├── data/               # Archivos CSV
+│   ├── utils/
+│   │   └── manejador_csv.py
+│   └── routes/
+│       ├── candidatos.py
+│       ├── cargos.py
+│       ├── evaluadores.py
+│       ├── tests.py
+│       ├── preguntas.py
+│       ├── respuestas.py
+│       └── resultados.py
+│
+└── frontend/
+    ├── index.html
+    ├── package.json
+    ├── vite.config.js
+    └── src/
+        ├── App.jsx
+        ├── main.jsx
+        ├── services/
+        │   ├── candidatos.js
+        │   ├── cargos.js
+        │   ├── evaluadores.js
+        │   ├── tests.js
+        │   ├── preguntas.js
+        │   └── respuestas.js
+        └── pages/
+            ├── CandidatosList.jsx
+            ├── CandidatoForm.jsx
+            ├── CargosList.jsx
+            ├── CargoForm.jsx
+            ├── TestsList.jsx
+            ├── TestForm.jsx
+            ├── PreguntasList.jsx
+            ├── PreguntaForm.jsx
+            ├── AplicarTest.jsx
+            ├── ResponderTest.jsx
+            └── ResultadosTest.jsx
+🔐 Cómo retomar el trabajo
+Backend: Activar entorno virtual y ejecutar python app.py.
+
+Frontend: npm run dev en la carpeta frontend.
+
+Probar las funcionalidades existentes antes de agregar nuevas.

@@ -1,0 +1,2 @@
+id,nombre,apellido,email,cargo,password_hash
+1,Ana,Martínez,ana@example.com,Psicóloga Senior,scrypt:32768:8:1$TrNZl1fZZspb5c2z$06d0de323b8dfee03e25f519617e63583a70a1b37c91ce641ffcf705f5a79d09d865a59a5db2f284baf37e2345447f74568d63051866d87d3e30c5c6e82d5b52

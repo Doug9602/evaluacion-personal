@@ -1,0 +1,7 @@
+id,nombre,apellido,email,telefono,fecha_nacimiento,genero,cargo_id,fecha_registro
+1,Pedro,González,pedro@example.com,15487878,2011-02-09,M,3.0,2026-03-06 11:52:09
+2,Jaime,Lopez,jlopez@mail.com,58747845,2004-03-06,M,2.0,2026-03-06 15:39:20
+3,Hector,Lara,hlara@mail.com,78458754,1998-03-19,M,3.0,2026-03-10 09:24:05
+4,Rene,Lima,rlima@mail.com,12457878,2006-02-06,M,1.0,2026-03-10 15:33:00
+5,Luis,Melendez,lmelendez@mail.com,15487845,2004-03-11,M,1.0,2026-03-12 07:45:09
+6,douglas ,Melara,mp17036@ues.edu.sv,21565465,2002-03-06,M,3.0,2026-03-12 14:35:58

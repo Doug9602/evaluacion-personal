@@ -1,0 +1,17 @@
+id,test_id,texto,tipo_pregunta,orden,opciones_json
+1,1,Me siento comodo al estar con otras personas.,likert,1,
+2,1,Disfruto explorando nuevas ideas y conceptos.,likert,2,
+3,1,Soy meticuloso y presto atención a los detalles.,likert,3,"[{""valor"":1,""texto"":""Busco una solución por mi cuenta""},{""valor"":2,""texto"":""Pido ayuda a un compañero""},{""valor"":3,""texto"":""Informo a mi supervisor""},{""valor"":4,""texto"":""Analizo varias soluciones antes de actuar""}]"
+4,1,Trato de ser amable y considerado con los demás.,likert,4,
+5,1,Prefiero trabajar de manera independiente.,likert,5,
+6,1,Colaborar con otros mejora los resultados.,likert,6,
+7,1,Me siento cómodo tomando la iniciativa en grupo.,likert,7,
+8,1,Soy capaz de adaptarme a situaciones difíciles.,likert,8,
+9,1,La honestidad es fundamental en mi vida.,likert,9,
+10,1,Me gusta liderar proyectos innovadores.,likert,10,
+11,1,Me involucro activamente en equipos para alcanzar metas.,likert,11,
+12,1,"Ante una decisión importante, prefiero:",multiple,12,"[{""valor"":5,""texto"":""Decidir por mí mismo""},{""valor"":3,""texto"":""Consultar con otras personas""},{""valor"":1,""texto"":""Delegar la decisión""}]"
+13,1,"Cuando tu equipo recibe una tarea difícil con poco tiempo, ¿cómo reaccionas?",multiple,13,"[{""valor"":1,""texto"":""Organizo al equipo y asigno tareas para avanzar rápido.""},{""valor"":2,""texto"":""Colaboro con los demás y ayudo donde haga más falta""},{""valor"":3,""texto"":""Me concentro en cumplir bien mi parte del trabajo""},{""valor"":4,""texto"":""Espero instrucciones antes de empezar a trabajar""}]"
+14,2,¿Cuál es el tipo de cable más utilizado en redes LAN Ethernet?,multiple,1,"[{""valor"":0,""texto"":""Fibra monomodo""},{""valor"":0,""texto"":""Cable coaxial""},{""valor"":1,""texto"":""Cable UTP""},{""valor"":0,""texto"":""Cable HDMI""}]"
+15,2,¿Qué dispositivo se utiliza principalmente para conectar múltiples dispositivos dentro de una red local y enviar datos según la dirección MAC?,multiple,2,"[{""valor"":0,""texto"":""Router""},{""valor"":1,""texto"":""Switch""},{""valor"":0,""texto"":""Firewall""},{""valor"":0,""texto"":""Modem""}]"
+16,2,¿Cuál de las siguientes direcciones IP pertenece a una red privada?,multiple,3,"[{""valor"":0,""texto"":""8.8.8.8""},{""valor"":0,""texto"":""172.217.10.14""},{""valor"":1,""texto"":""192.168.1.1""},{""valor"":0,""texto"":""54.32.11.9""}]"

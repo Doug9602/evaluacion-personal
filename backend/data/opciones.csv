@@ -1,0 +1,5 @@
+id,pregunta_id,texto,valor_puntuacion,valor
+1,3,Python (lenguaje principal),,1.5
+2,3,JavaScript,,2.0
+3,3,Java,,3.0
+4,3,C#,,4.0
