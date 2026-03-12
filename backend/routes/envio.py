@@ -54,7 +54,7 @@ def generar_opciones_html(pregunta_id, opciones_json):
         return ""
 
 # ------------------------------------------------------------
-# Generación del formulario HTML completo
+# Generación del formulario HTML completo (con nombre personalizado)
 # ------------------------------------------------------------
 def generar_html_formulario(candidato_id, test_id):
     # Obtener datos del candidato
@@ -77,7 +77,7 @@ def generar_html_formulario(candidato_id, test_id):
     test = df_tests[df_tests['id'] == test_id].to_dict(orient='records')
     test_nombre = test[0]['nombre'] if test else "Test desconocido"
 
-    # Construir HTML
+    # Construir el HTML
     html_content = f"""
     <!DOCTYPE html>
     <html lang="es">
@@ -89,6 +89,21 @@ def generar_html_formulario(candidato_id, test_id):
         <style>
             body {{ padding: 20px; }}
         </style>
+        <script>
+            // Datos del candidato proporcionados por el backend
+            const candidatoNombre = "{html.escape(candidato['nombre'])}";
+            const candidatoApellido = "{html.escape(candidato['apellido'])}";
+            const candidatoId = {candidato_id};
+
+            // Función para normalizar el nombre (eliminar acentos y reemplazar espacios)
+            function normalizarTexto(texto) {{
+                return texto
+                    .normalize('NFD')
+                    .replace(/[\\u0300-\\u036f]/g, '')
+                    .replace(/[^a-zA-Z0-9]/g, '_')
+                    .toLowerCase();
+            }}
+        </script>
     </head>
     <body>
         <div class="container">
@@ -164,11 +179,15 @@ def generar_html_formulario(candidato_id, test_id):
                 respuestas: respuestas
             };
 
+            // Construir nombre del archivo: apellido_nombre_id_respuestas.json
+            const nombreBase = normalizarTexto(candidatoApellido) + '_' + normalizarTexto(candidatoNombre) + '_' + candidatoId;
+            const nombreArchivo = nombreBase + '_respuestas.json';
+
             const blob = new Blob([JSON.stringify(resultado, null, 2)], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'respuestas.json';
+            a.download = nombreArchivo;
             a.click();
             URL.revokeObjectURL(url);
         }
@@ -318,24 +337,20 @@ def importar_respuestas():
     except Exception as e:
         return jsonify({"error": f"Error al leer el archivo JSON: {str(e)}"}), 400
 
-    # Validar estructura
     if not all(k in data for k in ('candidato_id', 'test_id', 'respuestas')):
         return jsonify({"error": "El JSON debe contener candidato_id, test_id y respuestas"}), 400
     
     if not isinstance(data['respuestas'], list):
         return jsonify({"error": "El campo 'respuestas' debe ser una lista"}), 400
 
-    # Validar existencia del candidato
     df_candidatos = leer_csv('candidatos.csv')
     if data['candidato_id'] not in df_candidatos['id'].values:
         return jsonify({"error": "El candidato especificado no existe"}), 404
 
-    # Validar existencia del test
     df_tests = leer_csv('tests.csv')
     if data['test_id'] not in df_tests['id'].values:
         return jsonify({"error": "El test especificado no existe"}), 404
 
-    # Validar que las preguntas pertenezcan al test
     df_preguntas = leer_csv('preguntas.csv')
     preguntas_test = df_preguntas[df_preguntas['test_id'] == data['test_id']]['id'].tolist()
     for item in data['respuestas']:
@@ -344,10 +359,8 @@ def importar_respuestas():
         if item['pregunta_id'] not in preguntas_test:
             return jsonify({"error": f"La pregunta {item['pregunta_id']} no pertenece al test {data['test_id']}"}), 400
 
-    # Normalizar el JSON de respuestas para comparar
     respuestas_json_normalizado = json.dumps(data['respuestas'], sort_keys=True, separators=(',', ':'))
 
-    # Verificar duplicado
     df_respuestas = leer_csv('respuestas.csv')
     if not df_respuestas.empty:
         df_existente = df_respuestas[
@@ -363,7 +376,6 @@ def importar_respuestas():
             except:
                 pass
 
-    # Guardar nueva respuesta
     df = leer_csv('respuestas.csv')
     nuevo_id = generar_id('respuestas.csv')
     respuestas_json = json.dumps(data['respuestas'], ensure_ascii=False)
@@ -380,7 +392,6 @@ def importar_respuestas():
     df = pd.concat([df, pd.DataFrame([nueva_fila])], ignore_index=True)
     escribir_csv('respuestas.csv', df)
 
-    # Calcular resultados por escala
     calcular_resultados_escalas_local(nuevo_id, data['respuestas'], data['test_id'])
 
     respuesta = {
